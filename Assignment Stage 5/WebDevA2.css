@@ -1,0 +1,161 @@
+/* Main body and site appearance style / setup */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #20634d;
+    margin: 0;
+    padding: 10px;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    /* FIX 1: Add horizontal scrolling if content (the table) is too wide */
+    overflow-x: auto; 
+}
+
+/* Form style set up for input of data */
+form {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 4 columns per row */
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    font-size: 16px;
+}
+
+/* Register Patient button setup */
+button {
+    grid-column: span 6; /* button spans across all 4 columns */
+    padding: 10px 15px;
+    background-color: #0a8f70;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+/* Register Patient button to change colour when curser hovers over button*/
+button:hover {
+    background-color: #0ddabe; 
+}
+
+/* Registered Patients data, once submitted, table styling */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Removes space between borders */
+    margin-top: 20px;
+    /* FIX 2 (Optional): Helps distribute column widths evenly */
+    table-layout: fixed; 
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    /* FIX 3: Ensures padding/borders are included in the cell's width */
+    box-sizing: border-box; 
+    
+    /* Optional: Added overflow control for individual cells if text is too long */
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+}
+
+th {
+    background-color: #088265; /* Submitted patient details heading style */
+    color: white;
+}
+
+/* Added a hover effect for the table rows */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #dddddd;
+}
+
+.error-message {
+    color: #c73d38; /* A standard red color for errors */
+    font-size: 0.6em;
+    display: block; /* Ensures it appears below the input */
+    margin-top: 5px;
+    height: 1em; /* Gives it a consistent height to prevent layout shifts */
+}
+
+input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: #c0342f; /* Highlights invalid fields in red if the user has interacted with them */
+}
+/* Optional: Add some margin to form groups for better spacing with errors */
+form label {
+    margin-top: 15px; 
+}
+
+#patientSearchInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+/* Styling for the delete button */
+.delete-btn {
+    background-color: #dc3545; /* Red color */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Ensure you have styles for the BMI categories (from a previous response) */
+.underweight { color: blue; }
+.normalweight { color: green; }
+.overweight { color: orange; }
+.obese { color: red; font-weight: bold; }
+
+.sortable {
+    cursor: pointer;
+    /* Optional: Add a visual indicator for sorting state */
+}
+
+.sortable:hover {
+    background-color: #f2f2f2;
+}
+
+.column-filter {
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't increase width past 100% */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#filterRow td {
+    padding: 2px; /* Reduce padding for the filter row cells */
+}

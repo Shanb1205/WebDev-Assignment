@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration System</title>
+    <link rel="stylesheet" href="WebDevA2.css">
+    <!-- Ensure you add the CSS styles for the .error-message class to your WebDevA2.css file from the previous response -->
+</head>
+<body>
+    <div class="container">
+        <h2>Patient Registration Form</h2>
+        <form id="patientForm">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" required
+            minlength="2" maxlength="12"
+            pattern="[A-Za-z]+" placeholder="Enter your first name"
+            title="Name must contain only letters (A-Z, a-z) and be between 2 and 12 characters long.">
+            <span class="error-message" id="firstnameError"></span>
+
+            <label for="lastname">Surname:</label>
+            <input type="text" id="lastname"
+            minlength="2" maxlength="20"
+            pattern="[A-Za-z\-\']+" required placeholder="Enter your surname"
+            title="Name must contain only letters (A-Z, a-z) and be between 2 and 20 characters long.">
+            <span class="error-message" id="lastnameError"></span>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" required
+            min="0" max="120" placeholder="Enter your age in years"
+            step="1"
+            title="Age must be between 0-120 years">
+            <span class="error-message" id="ageError"></span>
+
+            <label for="DOB">DOB:</label>
+            <input type="date" id="DOB" required>
+            <span class="error-message" id="DOBError"></span>
+
+
+            <label for="gender">Gender:</label>
+            <select id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <span class="error-message" id="genderError"></span>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" required
+             min="30" max="200" placeholder="Enter your height in cm"
+             step="1"
+             title="Height must be between 30-200cm">
+            <span class="error-message" id="heightError"></span>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" required
+             min="1" max="200" placeholder="Enter your weight in kg"
+             step="1"
+             title="Height must be between 1-200kg">
+            <span class="error-message" id="weightError"></span>
+
+            <label for="contact">Contact Mobile No:</label>
+            <input type="text" id="contact" required
+            inputmode="numeric"
+            pattern="07[0-9]{9}" placeholder="Enter your mobile number"
+            maxlength="11"
+            title="Please enter a valid 11-digit phone number starting with 07.">
+            <span class="error-message" id="contactError"></span>
+
+            <!-- email only recognises @ not .com or .co.uk -->
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" required
+            inputmode="email"
+            pattern="[^ @]*@[^ @]*" placeholder="Enter your email"
+            maxlength="25"
+            title="Please enter a valid email address, including @, ending in .com or .co.uk">
+            <span class="error-message" id="emailError"></span>
+
+           <!-- Success message container added here -->
+            <div id="successMessage" style="color: green; margin-bottom: 10px; display: none; font-weight: bold;">
+                Patient successfully registered!
+            </div>
+           
+            <button type="submit">Register Patient</button>
+        </form>
+
+        <h3>Search Patients</h3>
+        <input type="text" id="patientSearchInput" placeholder="Search by ID, First Name, or Last Name..." title="Search for patients by ID, first name, or last name.">
+
+        <h2>Registered Patients</h2>
+        <table id="patientTable">
+            <thead>
+                <tr>
+                    <th class="sortable" data-sort="id">Patient ID</th>
+                    <th class="sortable" data-sort="firstname">First Name</th>
+                    <th class="sortable" data-sort="lastname">Surame</th>
+                    <th class="sortable" data-sort="age">Age</th>
+                    <th class="sortable" data-sort="DOB">D.O.B</th>
+                    <th class="sortable" data-sort="gender">Gender</th>
+                    <th class="sortable" data-sort="height">Height</th>
+                    <th class="sortable" data-sort="weight">Weight</th>
+                    <th class="sortable" data-sort="contact">Contact Number</th>
+                    <th class="sortable" data-sort="email">Email Address</th>
+                    <th class="sortable" data-sort="bmi">BMI</th>
+                    <th>Modify</th>
+                    <th>Delete</th>
+                </tr>
+                <tr id="filterRow">
+                    <td><input type="text" id="filter-id" class="column-filter" placeholder="Filter ID"></td>
+                    <td><input type="text" id="filter-firstname" class="column-filter" placeholder="Filter Name"></td>
+                    <td><input type="text" id="filter-lastname" class="column-filter" placeholder="Filter Surname"></td>
+                    <td><input type="text" id="filter-age" class="column-filter" placeholder="Filter Age"></td>
+                    <td><input type="text" id="filter-DOB" class="column-filter" placeholder="Filter D.O.B"></td>
+                    <td><input type="text" id="filter-gender" class="column-filter" placeholder="Filter Gender"></td>
+                    <td><input type="text" id="filter-height" class="column-filter" placeholder="Filter Height"></td>
+                    <td><input type="text" id="filter-weight" class="column-filter" placeholder="Filter Weight"></td>
+                    <td><input type="text" id="filter-contact" class="column-filter" placeholder="Filter Contact"></td>
+                    <td><input type="text" id="filter-email" class="column-filter" placeholder="Filter Email"></td>
+                    <td><input type="text" id="filter-bmi" class="column-filter" placeholder="Filter BMI"></td>
+                    <!-- Empty cells for Modify and Delete columns -->
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody id="patientList">
+            </tbody>
+        </table>
+        
+        <br>
+        <h2>BMI Categories</h2>
+        <table id="bmiLegendTable">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>BMI Range (kg/m²)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="underweightRow"><td>Underweight</td><td>&lt; 18.5</td></tr>
+                <tr id="normalRow"><td>Normal weight</td><td>18.5 - 24.9</td></tr>
+                <tr id="overweightRow"><td>Overweight</td><td>25.0 - 29.9</td></tr>
+                <tr id="obeseRow"><td>Obese</td><td>&ge; 30.0</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+<script src="WebDevA3.js"></script>
+</body>
+</html>
