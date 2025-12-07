@@ -1,0 +1,94 @@
+/* Main body and site appearance style / setup */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #20634d;
+    margin: 0;
+    padding: 10px;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto; 
+}
+
+/* Form style set up for input of data */
+form {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columns per row */
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    font-size: 16px;
+}
+
+/* Register Patient button setup */
+button {
+    grid-column: span 6; /* button spans across all 6 columns */
+    padding: 10px 15px;
+    background-color: #0a8f70;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+/* Register Patient button to change colour when curser hovers over button*/
+button:hover {
+    background-color: #0ddabe; 
+}
+
+/* Registered Patients data, once submitted, table styling */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Removes space between borders */
+    margin-top: 20px;
+    table-layout: fixed; 
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box; 
+    
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+}
+
+th {
+    background-color: #088265; /* Submitted patient details heading style */
+    color: white;
+}
+
+/* Added a hover effect for the table rows */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #dddddd;
+}
+
+form label {
+    margin-top: 15px; 
+}
